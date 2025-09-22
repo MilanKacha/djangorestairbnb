@@ -27,3 +27,7 @@ class Property(models.Model):
     def image_url(self):  # WEBSITE_URL  coming from settings.py main folder
         return f'{settings.WEBSITE_URL}{self.image.url}'   # upper img get here create folder and save in local
     
+    
+class Resarvation(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    property = models.ForeignKey(Property, related_name='resarvations', on_delete=models.CASCADE)
