@@ -1,5 +1,5 @@
 import os
-
+import logging
 from pathlib import Path
 from datetime import timedelta
 
@@ -41,6 +41,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = None
 
+# applied authentication for all app
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -50,6 +51,13 @@ REST_FRAMEWORK = {
     )
 }
 
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'useraccount.serializers.CustomRegisterSerializer',
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'useraccount.serializers.CustomUserDetailsSerializer',
+}
 
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',

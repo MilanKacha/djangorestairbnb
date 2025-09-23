@@ -30,4 +30,11 @@ class Property(models.Model):
     
 class Resarvation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    property = models.ForeignKey(Property, related_name='resarvations', on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, related_name='resarvations', on_delete=models.CASCADE)  # related_name='resarvations' use in get resrvation
+    start_date = models.DateField()
+    end_date= models.DateField()
+    number_of_nights= models.IntegerField()
+    guests = models.IntegerField()
+    total_price = models.FloatField()
+    created_by = models.ForeignKey(User, related_name='resarvations', on_delete=models.CASCADE)
+    created_at= models.DateTimeField(auto_now_add=True)

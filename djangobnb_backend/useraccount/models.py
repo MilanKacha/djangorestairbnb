@@ -1,6 +1,6 @@
 import uuid  # use for generate unique id 
 from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager, BaseUserManager
 from django.db import models
 
 
@@ -8,6 +8,10 @@ from django.db import models
 
 class CustomUserManager(UserManager):
     def _create_user(self, name, email, password, **extra_fields):
+        print(">>> _create_user called")
+        print(">>> Input name:", name)
+        print(">>> Input email:", email)
+        # print(">>> Extra fields:", extra_fields)
         if not email:
             raise ValueError("You have not specified a valid e-mail address")
     
